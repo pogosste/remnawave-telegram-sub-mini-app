@@ -110,20 +110,20 @@ export const InstallationGuideWidget = ({
 
     const { subscriptionUrl } = user
 
-    const openDeepLink = (urlScheme: string, isNeedBase64Encoding: boolean | undefined) => {
+    const openDeepLink = (urlScheme: string, isNeedBase64Encoding?: boolean, useRedirect?: boolean) => {
+        let url: string
+
         if (isNeedBase64Encoding) {
-            const encoded = btoa(`${subscriptionUrl}`)
-            const encodedUrl = `${urlScheme}${encoded}`
-            window.open(encodedUrl, '_blank')
+            url = `${urlScheme}${btoa(subscriptionUrl)}`
         } else if (urlScheme.startsWith('happ') && isCryptoLinkEnabled) {
-            // return os === 'windows' || os === 'linux' || os === 'macos'
-                return window.open(`${redirectLink}${user.happ.cryptoLink}`, '_blank')
-                // : window.open(user.happ.cryptoLink, '_blank')
+            const cryptoUrl = user.happ?.cryptoLink || ''
+            url = useRedirect && redirectLink ? `${redirectLink}${cryptoUrl}` : cryptoUrl
         } else {
-            // return os === 'windows' || os === 'linux' || os === 'macos'
-                return window.open(`${redirectLink}${urlScheme}${subscriptionUrl}`, '_blank')
-                // : window.open(`${urlScheme}${subscriptionUrl}`)
+            const deepLink = `${urlScheme}${subscriptionUrl}`
+            url = useRedirect && redirectLink ? `${redirectLink}${deepLink}` : deepLink
         }
+
+        window.open(url, '_blank')
     }
 
     const availablePlatforms = [

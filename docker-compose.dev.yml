@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  remnawave-telegram-sub-mini-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: remnawave-telegram-sub-mini-app-dev
+    
+    ports:
+      - "${PORT:-3000}:3000"
+    
+    environment:
+      - NODE_ENV=development
+      - REMNAWAVE_PANEL_URL=${REMNAWAVE_PANEL_URL}
+      - REMNAWAVE_TOKEN=${REMNAWAVE_TOKEN}
+      - BUY_LINK=${BUY_LINK}
+      - CRYPTO_LINK=${CRYPTO_LINK:-false}
+      - REDIRECT_LINK=${REDIRECT_LINK:-https://maposia.github.io/redirect-page/?redirect_to=}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - AUTH_API_KEY=${AUTH_API_KEY:-}
+    
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    
+    command: pnpm dev
+    
+    restart: unless-stopped
+    
+    networks:
+      - remnawave-network
+
+networks:
+  remnawave-network:
+    driver: bridge

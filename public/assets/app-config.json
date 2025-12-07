@@ -16,6 +16,7 @@
         "name": "Happ",
         "isFeatured": true,
         "urlScheme": "happ://add/",
+        "useRedirect": false,
         "installationStep": {
           "buttons": [
             {
@@ -58,6 +59,7 @@
         "name": "Happ",
         "isFeatured": false,
         "urlScheme": "happ://add/",
+        "useRedirect": false,
         "installationStep": {
           "buttons": [
             {
@@ -101,6 +103,7 @@
         "name": "Happ",
         "isFeatured": false,
         "urlScheme": "happ://add/",
+        "useRedirect": false,
         "installationStep": {
           "buttons": [
             {
@@ -143,6 +146,7 @@
         "name": "V2rayTun",
         "isFeatured": false,
         "urlScheme": "v2raytun://import/",
+        "useRedirect": false,
         "installationStep": {
           "buttons": [
             {
@@ -178,6 +182,7 @@
         "name": "Happ",
         "isFeatured": true,
         "urlScheme": "happ://add/",
+        "useRedirect": false,
         "installationStep": {
           "buttons": [
             {
@@ -264,6 +269,7 @@
         "name": "Happ",
         "isFeatured": true,
         "urlScheme": "happ://add/",
+        "useRedirect": false,
         "installationStep": {
           "buttons": [
             {

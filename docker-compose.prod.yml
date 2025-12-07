@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  remnawave-telegram-sub-mini-app:
+    image: ghcr.io/pogosste/remnawave-telegram-sub-mini-app:latest
+    container_name: remnawave-telegram-sub-mini-app
+    
+    ports:
+      - "${PORT:-3000}:3000"
+    
+    environment:
+      - NODE_ENV=production
+      - REMNAWAVE_PANEL_URL=${REMNAWAVE_PANEL_URL}
+      - REMNAWAVE_TOKEN=${REMNAWAVE_TOKEN}
+      - BUY_LINK=${BUY_LINK}
+      - CRYPTO_LINK=${CRYPTO_LINK:-false}
+      - REDIRECT_LINK=${REDIRECT_LINK:-https://maposia.github.io/redirect-page/?redirect_to=}
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - AUTH_API_KEY=${AUTH_API_KEY:-}
+    
+    restart: unless-stopped
+    
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    
+    networks:
+      - remnawave-network
+
+networks:
+  remnawave-network:
+    driver: bridge

@@ -181,7 +181,8 @@ export const BaseInstallationGuideWidget = (props: IBaseGuideProps) => {
                         onClick={() =>
                             openDeepLink(
                                 selectedApp.urlScheme,
-                                selectedApp.isNeedBase64Encoding
+                                selectedApp.isNeedBase64Encoding,
+                                selectedApp.useRedirect
                             )
                         }
                         variant="filled"

@@ -120,6 +120,7 @@ export interface IAppConfig {
     isNeedBase64Encoding?: boolean
     name: string
     urlScheme: string
+    useRedirect?: boolean
 }
 
 export interface ISubscriptionPageConfiguration {
